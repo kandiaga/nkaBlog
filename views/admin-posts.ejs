@@ -1,0 +1,51 @@
+<!-- views/admin-posts.ejs -->
+<!-- Include the haeder.ejs  -->
+<%- include("partials/header") %>
+    <%- include("partials/admin_top_nav") %>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">                
+				<%- include("partials/admin_nav") %>
+            </div>
+            <div class="col-md-9">			
+                <h2>Admin Posts</h2>
+				<a href="/add-post">Add New Post</a>
+				
+        
+				
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+								 <th>Image</th>
+                                <th>Name</th>
+                                <th>Description</th>
+								<th>Action</th>
+								<th></th>
+								<th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+						    <% for (const post of posts) { %>
+	                           <tr>
+                                <td><%= post.id_post%></td>
+								<td><img src="/uploads/<%= post.post_image %>"  width="50"></td>
+                                <td><%= post.post_title %></td>
+                                <td><%= post.post_excerpt %></td>
+								<td> <a  href="/post/<%= post.id_post %>" target="_blank">Preview </a></td>
+								<td> <a  href="/update-post/<%= post.id_post %>">Edit </a></td>
+								<td> <a  href="/delete-post/<%= post.id_post %>">Delete </a></td>
+                            </tr>
+                             <% } %>
+                            
+                            <!-- Add more category rows here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+<!-- Include the admin haeder.ejs  -->
+<%- include("partials/footer") %>	  

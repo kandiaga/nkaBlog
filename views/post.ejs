@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+    <title><%= post.post_title %></title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Additional custom styles */
+        body {
+            padding-top: 20px;
+        }
+		
+@media (max-width: 767px) {
+    body {
+        padding-top: 60px; /* Adjust padding for better mobile layout */
+    }
+    .list-group {
+        margin-bottom: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+<%- include("partials/front/top_menu") %>   
+ <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card"  style="margin-bottom:150px;">
+				  <h2 class="card-title"><%= post.post_title %></h2>
+                    <img src="/uploads/<%= post.post_image %>" class="card-img-top" alt="<%= post.post_title %>">
+                    <div class="card-body">                       
+                        <p class="card-text"><%-  post.post_excerpt %></p>
+                    </div>
+					
+					<div class="card-body">                       
+                        <p class="card-text"><%-  post.post_content %></p>
+                    </div>
+                </div>			
+				
+                <div class="related-posts"  >
+                    <h3>Related Posts</h3>
+					<hr/>
+                    <div class="row">
+					<% related_post.forEach(post => { %>
+                        <div class="col-md-4" style="margin-bottom:15px;">
+                            <div class="card">
+                                <img src="/uploads/<%= post.post_image %>" class="card-img-top" alt="<%= post.post_title %>">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= post.post_title %></h5>
+									<a href="/post/<%= post.id_post %>" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+						
+					 <% }) %>				  
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 categories">
+                <h3>Categories</h3>
+                <ul class="list-group">
+				     <% for (const category of categories) { %>
+                    <li class="list-group-item"><a  href="/category/<%= category.id_category %>"><%= category.category_title %></a></li>                    
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>  
+  
+  
+ <style>
+        .related-posts {
+            margin-top: 20px;
+        }
+        .categories {
+            margin-top: 20px;
+        }
+ </style> 
+<!-- Include the admin haeder.ejs  -->
+<%- include("partials/front/footer") %>	     
+
+
+
+
+

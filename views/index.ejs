@@ -1,0 +1,37 @@
+<%- include("partials/front/header") %>
+<%- include("partials/front/top_menu") %> 
+
+
+
+ <div class="container mt-4">
+        
+		<% if (!category_title) { %>
+        <h2>Laterst Blog Posts</h2>
+		<hr/>
+        <% } else {%>
+		<h2><%= category_title %></h2>
+		<hr/>
+		<% } %>
+		
+        <div class="row">
+            <% posts.forEach(post => { %>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="/uploads/<%= post.post_image %>" class="card-img-top" alt="<%= post.post_title %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= post.post_title %></h5>
+                            <p class="card-text"><%= post.post_excerpt %></p>
+                            <a href="/post/<%= post.id_post %>" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+</div>
+
+
+
+ 
+	
+<!-- Include the admin haeder.ejs  -->
+<%- include("partials/front/footer") %>	   

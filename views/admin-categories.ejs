@@ -1,0 +1,46 @@
+<!-- Include the haeder.ejs  -->
+<%- include("partials/header") %>
+   <%- include("partials/admin_top_nav") %>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">                
+				<%- include("partials/admin_nav") %>
+            </div>
+            <div class="col-md-9">			
+                <h2>Categories</h2>
+				<a href="/add-category">Add New Category</a>
+				
+        
+				
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+								<th>Action</th>
+								<th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+						    <% for (const category of categories) { %>	  
+	                           <tr>
+                                <td><%= category.id_category %></td>
+                                <td><%= category.category_title %></td>
+                                <td><%= category.category_description %></td>
+								<td> <a  href="/edit-category/<%= category.id_category %>">Edit </a></td>
+								<td> <a  href="/delete-category/<%= category.id_category %>">Delete </a></td>
+                            </tr>
+                             <% } %>
+                            
+                            <!-- Add more category rows here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+<!-- Include the admin haeder.ejs  -->
+<%- include("partials/footer") %>	  

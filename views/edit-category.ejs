@@ -1,0 +1,36 @@
+<!-- views/edit-category.ejs -->
+<%- include("partials/header") %>
+     <%- include("partials/admin_top_nav") %>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">                
+				<%- include("partials/admin_nav") %>
+            </div>
+  <div class="col-md-9">
+  <h1>Edit Category</h1>
+  <form action="/edit-category/<%= category.id_category %>" method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="category_title" class="form-label">Category Title:</label>
+        <input type="text" name="category_title"  value="<%= category.category_title %>"  class="form-control" required>
+        <div class="invalid-feedback">
+            Please provide a category title.
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="category_description" class="form-label">Category Description:</label>
+        <textarea name="category_description" class="form-control" required><%= category.category_description %></textarea>
+        <div class="invalid-feedback">
+            Please provide a category description.
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Update Category</button>
+</form>
+
+  
+   </div>
+  
+  
+ <!-- Include the admin haeder.ejs  -->
+<%- include("partials/footer") %>	   
