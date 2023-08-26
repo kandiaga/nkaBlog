@@ -1,0 +1,24 @@
+<!-- Include the haeder.ejs  -->
+<%- include("partials/header") %>
+    <%- include("partials/admin_top_nav") %>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">                
+				<%- include("partials/admin_nav") %>
+            </div>
+            <div class="col-md-9">
+        <h1>Blog Informations</h1>			
+		<ul>
+		<li> Blog Title: <strong><%= blog.title %> </strong> </li> 
+		<li> Blog Description: <strong><%= blog.description %> </strong></li>	 
+		 </ul>
+		 <hr/> 
+		 
+		 <h6><a href="/edit-bloginfo/<%= blog.id_blog %>">Edit  Blog Info</a></h6>
+  
+   </div>
+        </div>
+    </div>
+	
+<!-- Include the admin haeder.ejs  -->
+<%- include("partials/footer") %>	  

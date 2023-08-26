@@ -15,9 +15,10 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
   const { user_login, user_pass,user_nicename,user_email,user_url,display_name} = req.body;
   const hashedPassword = await bcrypt.hash(user_pass, 10); // Hash the password
+  const id_tenant=1;
 
-  const query = 'INSERT INTO nka_users (user_login, user_pass,user_nicename,user_email,user_url,display_name,user_registered) VALUES (?, ?,?, ?,?, ?, NOW())';
-  connection.query(query, [user_login, hashedPassword,user_nicename,user_email,user_url,display_name], (error, results) => {
+  const query = 'INSERT INTO nka_users (user_login, user_pass,user_nicename,user_email,user_url,display_name,id_tenant,user_registered) VALUES (?, ?,?, ?,?, ?,?, NOW())';
+  connection.query(query, [user_login, hashedPassword,user_nicename,user_email,user_url,display_name,id_tenant], (error, results) => {
     if (error) throw error;
     res.redirect('/login');
   });
@@ -41,7 +42,7 @@ router.post('/login', async (req, res) => {
 
       if (isPasswordMatch) {
         req.session.userId = user.id_user; // Store user ID in session
-        res.redirect('/admin/posts'); // Redirect to admin dashboard
+        res.redirect('/admin/home'); // Redirect to admin dashboard
       } else {
         res.redirect('/login');
       }

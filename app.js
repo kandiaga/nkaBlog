@@ -3,6 +3,17 @@ const session = require('express-session');
 const app = express();
 const port = 3000;
 
+const extractTenant = require('./middleware/tenant');
+
+//app.use(extractTenant);
+
+// Middleware to handle subdomains
+app.use((req, res, next) => {
+  const parts = req.hostname.split('.');
+  req.subdomain = parts[0]; // Extract the subdomain
+  next();
+});
+
 
 // Set up session middleware
 app.use(
@@ -67,7 +78,18 @@ app.use(deleteUserRoute);
 const adminHomeRoute = require('./routes/admin-home');
 app.use(adminHomeRoute);
 
+const adminBlogSettingsRoute = require('./routes/admin-blog');
+app.use(adminBlogSettingsRoute);
 
+const adminWebsiteSettingsRoute = require('./routes/admin-settings');
+app.use(adminWebsiteSettingsRoute);
+
+
+const editBlogInfoRoute = require('./routes/edit-bloginfo');
+app.use(editBlogInfoRoute);
+
+const editWebsiteInfoRoute = require('./routes/edit-website');
+app.use(editWebsiteInfoRoute);
 
 
 const authRoute = require('./routes/auth'); // Add this line

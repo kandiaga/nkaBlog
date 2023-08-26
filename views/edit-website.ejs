@@ -1,0 +1,38 @@
+<!-- Include the haeder.ejs  -->
+<%- include("partials/header") %>
+    <%- include("partials/admin_top_nav") %>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">                
+				<%- include("partials/admin_nav") %>
+            </div>
+            <div class="col-md-9">
+        <h1>Edit Blog Informations</h1>	
+		
+  <form action="/edit-website/<%= tenant.id_tenant %>" method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="tenant_name" class="form-label">Website Title:</label>
+        <input type="text" name="tenant_name"  value="<%= tenant.name %>"  class="form-control" required>
+        <div class="invalid-feedback">
+            Please provide a website name.
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="blog_description" class="form-label">Domain Name :</label>
+          <%= tenant.domain %> ( Not Editable !)		 
+        <div class="invalid-feedback">
+            This  can  not be  edited
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+  
+   </div>
+        </div>
+    </div>
+	
+<!-- Include the admin haeder.ejs  -->
+<%- include("partials/footer") %>	  

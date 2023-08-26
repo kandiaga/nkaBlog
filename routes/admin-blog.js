@@ -9,12 +9,12 @@ const authMiddleware = require('../middleware/authMiddleware');
 // Apply the authentication middleware to the add-post route
 router.use(authMiddleware);
 
-router.get('/admin/home', (req, res) => {	 
+router.get('/admin/blog', (req, res) => {	 
 	const userId=req.session.userId;
-	
-  connection.query('SELECT * FROM nka_tenants WHERE id_user = ?', [userId], (error, tenants) => {
+	const page_name='Admin Blog';
+  connection.query('SELECT * FROM nka_blogs WHERE id_user = ?', [userId], (error, blogs) => {
     if (error) throw error;
-    res.render('admin-home', { tenant: tenants[0]});
+    res.render('admin-blog', { blog: blogs[0] ,page_name});
   });
 });
 
