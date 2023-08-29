@@ -10,9 +10,10 @@ const authMiddleware = require('../middleware/authMiddleware');
 router.use(authMiddleware);
 
 router.get('/admin/users', (req, res) => {
+	const tenantDomain = '';
   connection.query('SELECT * FROM nka_users', (error, results) => {
     if (error) throw error;
-    res.render('admin-users', { users: results });
+    res.render('admin-users', { users: results ,tenantDomain});
   });
 });
 

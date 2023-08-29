@@ -3,16 +3,8 @@ const session = require('express-session');
 const app = express();
 const port = 3000;
 
-const extractTenant = require('./middleware/tenant');
 
-//app.use(extractTenant);
 
-// Middleware to handle subdomains
-app.use((req, res, next) => {
-  const parts = req.hostname.split('.');
-  req.subdomain = parts[0]; // Extract the subdomain
-  next();
-});
 
 
 // Set up session middleware
@@ -23,6 +15,12 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+
+const { fetchDomainName } = require('./middleware/tenant_domain'); // Import the middleware
+
+// Use the fetchDomainName middleware for all routes
+app.use(fetchDomainName);
 
 const routes = require('./routes'); // Make sure the path is correct
 app.use('/', routes); // Apply the routes to the root route '/'

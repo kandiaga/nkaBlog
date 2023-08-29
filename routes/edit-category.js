@@ -11,10 +11,11 @@ router.use(authMiddleware);
 
 // GET route to render the update post form
 router.get('/edit-category/:id_category', (req, res) => {
-  const categoryId = req.params.id_category;  
+  const categoryId = req.params.id_category; 
+  const tenantDomain = req.DomainName;
     connection.query('SELECT * FROM nka_categories WHERE id_category = ?', [categoryId], (error, results) => {
       if (error) throw error;
-      res.render('edit-category', {category:results[0], userId: req.session.userId });
+      res.render('edit-category', {category:results[0], userId: req.session.userId,tenantDomain });
     });	
  
 });

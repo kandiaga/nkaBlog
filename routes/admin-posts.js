@@ -10,10 +10,18 @@ const authMiddleware = require('../middleware/authMiddleware');
 router.use(authMiddleware);
 
 router.get('/admin/posts', (req, res) => {
-  connection.query('SELECT * FROM nka_posts', (error, posts) => {
-    if (error) throw error;
-    res.render('admin-posts', { posts });
+	 const  userId=req.session.userId;		 
+	 const   blogId=req.BlogId;
+	 connection.query('SELECT * FROM nka_tenants  WHERE  id_user=? ',[userId], (error1, domain_data) => {
+	 if (error1) throw error1;	 
+	 const tenantDomain =domain_data[0].domain;
+  connection.query('SELECT * FROM nka_posts', (error2, posts) => {
+    if (error2) throw error2;	
+    res.render('admin-posts', { posts , tenantDomain});
   });
+  
+  });
+  
 });
 
 module.exports = router;

@@ -29,11 +29,11 @@
                         <tbody>
 						    <% for (const post of posts) { %>
 	                           <tr>
-                                <td><%= post.id_post%></td>
-								<td><img src="/uploads/<%= post.post_image %>"  width="50"></td>
+                                <td><%= post.id_post%></td>  
+								<td><img src="/uploads/<%= tenantDomain %>/<%= post.post_image %>"  width="50"></td>
                                 <td><%= post.post_title %></td>
                                 <td><%= post.post_excerpt %></td>
-								<td> <a  href="/post/<%= post.id_post %>" target="_blank">Preview </a></td>
+								<td> <a  href="/<%= tenantDomain %>/category/<%= post.id_category %>/post/<%= post.id_post %>" target="_blank">Preview </a></td>
 								<td> <a  href="/update-post/<%= post.id_post %>">Edit </a></td>
 								<td> <a  href="/delete-post/<%= post.id_post %>">Delete </a></td>
                             </tr>

@@ -29,10 +29,12 @@
             <div class="col-md-8">
                 <div class="card"  style="margin-bottom:150px;">
 				  <h2 class="card-title"><%= post.post_title %></h2>
-                    <img src="/uploads/<%= post.post_image %>" class="card-img-top" alt="<%= post.post_title %>">
+                    <img src="/uploads/<%= tenantDomain %>/<%= post.post_image %>" class="card-img-top" alt="<%= post.post_title %>">
                     <div class="card-body">                       
                         <p class="card-text"><%-  post.post_excerpt %></p>
                     </div>
+					
+					
 					
 					<div class="card-body">                       
                         <p class="card-text"><%-  post.post_content %></p>
@@ -46,10 +48,10 @@
 					<% related_post.forEach(post => { %>
                         <div class="col-md-4" style="margin-bottom:15px;">
                             <div class="card">
-                                <img src="/uploads/<%= post.post_image %>" class="card-img-top" alt="<%= post.post_title %>">
+                                <img src="/uploads/<%= tenantDomain %>/<%= post.post_image %>" class="card-img-top" alt="<%= post.post_title %>">
                                 <div class="card-body">
                                     <h5 class="card-title"><%= post.post_title %></h5>
-									<a href="/post/<%= post.id_post %>" class="btn btn-primary">Read More</a>
+									<a href="/<%= tenantDomain %>/category/<%= post.id_category %>/post/<%= post.id_post %>" class="btn btn-primary">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +66,7 @@
                 <h3>Categories</h3>
                 <ul class="list-group">
 				     <% for (const category of categories) { %>
-                    <li class="list-group-item"><a  href="/category/<%= category.id_category %>"><%= category.category_title %></a></li>                    
+                    <li class="list-group-item"><a  href="/<%= tenantDomain %>/category/<%= category.id_category %>"><%= category.category_title %></a></li>                    
                     <% } %>
                 </ul>
             </div>

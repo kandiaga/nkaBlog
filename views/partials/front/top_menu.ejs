@@ -1,5 +1,5 @@
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	    <a class="navbar-brand" href="/">Home</a>
+	    <a class="navbar-brand" href="/<%=tenantDomain%>">Home</a>  
 		<% if (!userId) { %>
        <a class="navbar-brand" href="/register">Register</a>
        <a class="navbar-brand" href="/login">Login</a>
@@ -8,13 +8,21 @@
 		 <% if (post && post.post_title) { %>
   <a class="navbar-brand" href="/update-post/<%= post.id_post %>">Edit Post</a>
 <% } %>
-
-		
+	
 		<form action="/logout" method="post">
         <button type="submit">Logout</button>
        </form>
-		<% } %>
-		
-		
+		<% } %>	
 		
     </nav>
+ <!-- Header -->
+  <header class="text-white text-center py-4" style="background: linear-gradient(to bottom, #1877f2, #0a4279);">
+    <div class="container">	      
+      <h1 class="display-4"><img src="/uploads/<%= tenantDomain %>/<%= blog.logo %>" alt="<%= blog.title %>" width="80" class="img-fluid mb-2">	 <%= blog.title %></h1>
+      <p class="lead"><%= blog.description %></p>
+    </div>
+  </header>  	
+	
+	
+	
+	

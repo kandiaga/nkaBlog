@@ -11,6 +11,9 @@
   <div class="col-md-9">			
   <h1>Add a New Post</h1>
   <form action="/add-post" method="post" class="needs-validation"  enctype="multipart/form-data" novalidate>
+  <input type="text" name="id_user" class="form-control" value="<%= userId %>" required>
+  <input type="text" name="id_tenant" class="form-control" value="<%= blog_data.id_tenant %>" required>
+  <input type="text" name="id_blog" class="form-control" value="<%= blog_data.id_blog %>" required>
     <div class="mb-3">
         <label for="post_title" class="form-label">Post Title:</label>
         <input type="text" name="post_title" class="form-control" required>

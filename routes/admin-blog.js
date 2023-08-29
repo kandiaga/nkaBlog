@@ -11,10 +11,11 @@ router.use(authMiddleware);
 
 router.get('/admin/blog', (req, res) => {	 
 	const userId=req.session.userId;
+	const tenantDomain = req.DomainName;
 	const page_name='Admin Blog';
   connection.query('SELECT * FROM nka_blogs WHERE id_user = ?', [userId], (error, blogs) => {
     if (error) throw error;
-    res.render('admin-blog', { blog: blogs[0] ,page_name});
+    res.render('admin-blog', { blog: blogs[0] ,page_name,tenantDomain});
   });
 });
 

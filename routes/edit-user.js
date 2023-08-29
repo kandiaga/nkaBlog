@@ -13,9 +13,10 @@ router.use(authMiddleware);
 // GET route to render the update post form
 router.get('/edit-user/:id_user', (req, res) => {
   const userIdCurrent = req.params.id_user;  
+  const tenantDomain = req.DomainName;
     connection.query('SELECT * FROM nka_users WHERE id_user = ?', [userIdCurrent], (error, results) => {
       if (error) throw error;
-      res.render('edit-user', {user:results[0], userId: req.session.userId });
+      res.render('edit-user', {user:results[0], userId: req.session.userId,tenantDomain });
     });	
  
 });

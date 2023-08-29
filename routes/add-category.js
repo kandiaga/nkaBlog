@@ -10,14 +10,20 @@ const authMiddleware = require('../middleware/authMiddleware');
 router.use(authMiddleware);
 
 router.get('/add-category', (req, res) => {
-  res.render('add-category');
+ const  userId=req.session.userId;
+  connection.query('SELECT  id_blog, id_tenant FROM nka_blogs  WHERE id_user = ?',[userId], (error,  blog_datas) => {
+    if (error) throw error;
+    res.render('add-category', { blog_data:blog_datas[0] ,userId:req.session.userId});
+  });
+  
 });
 
 router.post('/add-category', (req, res) => {
-  const { category_title, category_description } = req.body;
-  const query = 'INSERT INTO nka_categories (category_title, category_description) VALUES (?, ?)';
+  const  userId=req.session.userId;	
+  const { category_title, category_description,id_blog,id_tenant} = req.body;
+  const query = 'INSERT INTO nka_categories (category_title, category_description,id_blog,id_tenant,id_user) VALUES (?, ?,?,?,?)';
   
-  connection.query(query, [category_title, category_description], (error, results) => {
+  connection.query(query, [category_title, category_description,id_blog,id_tenant, userId], (error, results) => {
     if (error) throw error;
     //res.redirect('/categories');
 	res.redirect('/admin/categories');

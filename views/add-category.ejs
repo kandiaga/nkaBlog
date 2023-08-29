@@ -11,6 +11,9 @@
   <div class="col-md-9">
   <h1>Add a New Category</h1>
   <form action="/add-category" method="post" class="needs-validation" novalidate>
+  <input type="hidden" name="id_user" class="form-control" value="<%= userId %>" required>
+  <input type="hidden" name="id_tenant" class="form-control" value="<%= blog_data.id_tenant %>" required>
+  <input type="hidden" name="id_blog" class="form-control" value="<%= blog_data.id_blog %>" required>
     <div class="mb-3">
         <label for="category_title" class="form-label">Category Title:</label>
         <input type="text" name="category_title" class="form-control" required>

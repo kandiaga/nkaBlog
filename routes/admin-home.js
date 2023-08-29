@@ -14,7 +14,8 @@ router.get('/admin/home', (req, res) => {
 	
   connection.query('SELECT * FROM nka_tenants WHERE id_user = ?', [userId], (error, tenants) => {
     if (error) throw error;
-    res.render('admin-home', { tenant: tenants[0]});
+	const tenantDomain =tenants[0].domain;
+    res.render('admin-home', { tenant: tenants[0], tenantDomain});
   });
 });
 

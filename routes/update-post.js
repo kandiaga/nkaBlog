@@ -17,13 +17,13 @@ router.use(authMiddleware);
 // GET route to render the update post form
 router.get('/update-post/:post_id', (req, res) => {
   const postId = req.params.post_id;  
-  
+  const tenantDomain = req.DomainName;
   connection.query('SELECT * FROM nka_categories', (error, categories) => {
 	  if (error) throw error;    
     // Assuming you have a function to retrieve the post data by ID
     connection.query('SELECT * FROM nka_posts WHERE id_post = ?', [postId], (error, results) => {
       if (error) throw error;
-      res.render('update-post', { categories, post:results[0], userId: req.session.userId });
+      res.render('update-post', { categories, post:results[0], userId: req.session.userId,tenantDomain });
     });
   });
 });

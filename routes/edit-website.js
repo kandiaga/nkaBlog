@@ -12,9 +12,10 @@ router.use(authMiddleware);
 // GET route to render the update post form
 router.get('/edit-website/:id_tenant', (req, res) => {
   const tenantId = req.params.id_tenant;  
+  const tenantDomain = req.DomainName;	
     connection.query('SELECT * FROM nka_tenants WHERE id_tenant= ?', [tenantId], (error, results) => {
       if (error) throw error;
-      res.render('edit-website', {tenant:results[0], userId: req.session.userId });
+      res.render('edit-website', {tenant:results[0], userId: req.session.userId ,tenantDomain});
     });	
  
 });
